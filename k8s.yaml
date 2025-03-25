@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pdf-batch-compress
+spec:
+  containers:
+    - name: pdf-compressor
+      image: docker.io/somansh/pdf-batch-compress:v1
+      volumeMounts:
+        - name: pdf-input
+          mountPath: /data/pdf-input
+        - name: pdf-output
+          mountPath: /data/pdf-output
+  volumes:
+    - name: pdf-input
+      hostPath:
+        path: D:/ddrive/tmp/bin/pdf-input
+        type: Directory
+    - name: pdf-output
+      hostPath:
+        path: D:/ddrive/tmp/bin/pdf-output
+        type: Directory
